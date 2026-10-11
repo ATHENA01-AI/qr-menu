@@ -49,10 +49,48 @@
         .p-price { font-weight: 700; color: #e31837; font-size: 16px; margin:0; }
 
         #loading { text-align: center; padding: 50px; font-weight: bold; }
+        /* MARKA VE LOGO ALANI STİLİ */
+.cafe-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px; /* Logo ile yazı arasındaki mesafe */
+    padding: 25px 20px;
+    background: linear-gradient(135deg, #2c1e1a 0%, #4a332d 100%); /* Şık kahve tonlarında geçişli arka plan */
+    border-bottom: 3px solid #d4af37; /* Zarif altın sarısı alt çizgi */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    border-radius: 0 0 15px 15px;
+}
+
+.cafe-logo {
+    width: 65px;
+    height: 65px;
+    object-fit: cover;
+    border-radius: 50%; /* Logonun daire şeklinde görünmesini sağlar */
+    border: 2px solid #d4af37; /* Etrafına altın sarısı çerçeve */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.brand-title {
+    font-family: 'Playfair Display', serif, sans-serif; /* Havalı, lüks bir yazı tipi */
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #fdfbf7; /* Yumuşak krem rengi yazı */
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 1px;
+}
     </style>
 </head>
 <body>
-
+<div class="cafe-header">
+    <!-- LOGO (logo.png dosyasını projenin içine koymayı unutma) -->
+    <img src="logo.png" alt="La Gelateria Logo" class="cafe-logo">
+    
+    <!-- MARKA İSMİ -->
+    <h1 class="brand-title">La Gelateria</h1>
+</div>
     <div class="top-bar">
         <div class="lang">TR ⌄</div>
         <div class="brand">KAFE İSMİ BURAYA</div>
