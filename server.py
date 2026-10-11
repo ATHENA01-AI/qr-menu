@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, send_file
 from flask_cors import CORS
 import pymongo
 
@@ -11,6 +11,11 @@ client = pymongo.MongoClient(MONGODB_URL)
 db = client["kafe_db"]
 menu_koleksiyonu = db["menu"]
 kategori_koleksiyonu = db["kategoriler"]
+
+# VERCEL İÇİN ANA SAYFA YÖNLENDİRMESİ
+@app.route('/')
+def home():
+    return send_file('index.html')
 
 @app.route('/api/menu', methods=['GET'])
 def get_menu():
