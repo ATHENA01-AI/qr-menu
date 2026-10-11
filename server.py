@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, send_file
+from flask import Flask, jsonify
 from flask_cors import CORS
 import pymongo
 
@@ -12,14 +12,9 @@ db = client["kafe_db"]
 menu_koleksiyonu = db["menu"]
 kategori_koleksiyonu = db["kategoriler"]
 
-@app.route('/')
-def home():
-    return send_file('index.html')
-
 @app.route('/api/menu', methods=['GET'])
 def get_menu():
     try:
-        # İŞTE KRİTİK NOKTA: Artık kategorilerin hem ismini hem de BASE64 resimlerini çekiyoruz
         kategoriler = list(kategori_koleksiyonu.find({}, {"_id": 0})) 
         urunler = list(menu_koleksiyonu.find().sort("_id", -1))
         
@@ -35,5 +30,4 @@ def get_menu():
         return jsonify({"status": "error", "message": str(e)}), 500
 
 if __name__ == '__main__':
-    print("Web sitesi başlatılıyor: http://localhost:5000")
     app.run(debug=True, port=5000)
