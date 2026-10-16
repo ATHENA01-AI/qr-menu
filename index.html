@@ -66,10 +66,12 @@
 .cafe-logo {
     width: 65px;
     height: 65px;
-    object-fit: cover;
-    border-radius: 50%; /* Logonun daire şeklinde görünmesini sağlar */
-    border: 2px solid #d4af37; /* Etrafına altın sarısı çerçeve */
+    object-fit: contain; /* Logonun kesilmeden tam sığmasını sağlar */
+    background-color: #ffffff; /* Logonun arka planıyla uyumlu beyaz zemin */
+    border-radius: 50%;
+    border: 2px solid #d4af37;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
 }
 
 .brand-title {
