@@ -51,51 +51,50 @@
         .p-price { font-weight: 700; color: #e31837; font-size: 16px; margin:0; }
 
         #loading { text-align: center; padding: 50px; font-weight: bold; }
+        
         /* MARKA VE LOGO ALANI STİLİ */
-.cafe-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px; /* Logo ile yazı arasındaki mesafe */
-    padding: 25px 20px;
-    background: linear-gradient(135deg, #2c1e1a 0%, #4a332d 100%); /* Şık kahve tonlarında geçişli arka plan */
-    border-bottom: 3px solid #d4af37; /* Zarif altın sarısı alt çizgi */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    margin-bottom: 20px;
-    border-radius: 0 0 15px 15px;
-}
+        .cafe-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            padding: 25px 20px;
+            background: linear-gradient(135deg, #2c1e1a 0%, #4a332d 100%);
+            border-bottom: 3px solid #d4af37;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            border-radius: 0 0 15px 15px;
+        }
 
-.cafe-logo {
-    width: 65px;
-    height: 65px;
-    object-fit: contain; /* Logonun kesilmeden tam sığmasını sağlar */
-    background-color: #ffffff; /* Logonun arka planıyla uyumlu beyaz zemin */
-    border-radius: 50%;
-    border: 2px solid #d4af37;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-}
+        .cafe-logo {
+            width: 65px;
+            height: 65px;
+            object-fit: contain;
+            background-color: #ffffff;
+            border-radius: 50%;
+            border: 2px solid #d4af37;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
 
-.brand-title {
-    font-family: 'Playfair Display', serif, sans-serif; /* Havalı, lüks bir yazı tipi */
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: #fdfbf7; /* Yumuşak krem rengi yazı */
-    margin: 0;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    letter-spacing: 1px;
-}
+        .brand-title {
+            font-family: 'Playfair Display', serif, sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #fdfbf7;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            letter-spacing: 1px;
+        }
     </style>
 </head>
 <body>
-<div class="cafe-header">
-    <!-- LOGO (logo.png dosyasını projenin içine koymayı unutma) -->
     <div class="cafe-header">
-    <!-- LOGO (GitHub'a yüklediğin logo.jpg dosyası buradan çekilecek) -->
-    <img src="https://github.com/aliefegnd/qr-menu/blob/main/Gemini_Generated_Image_22coua22coua22co.jpg?raw=true" alt="" class="cafe-logo">
-    
-    <!-- MARKA İSMİ -->
-   
+        <!-- LOGO (GitHub'dan çekiliyor) -->
+        <img src="https://github.com/aliefegnd/qr-menu/blob/main/Gemini_Generated_Image_22coua22coua22co.jpg?raw=true" alt="La Gelateria Logo" class="cafe-logo">
+        
+        <!-- MARKA İSMİ -->
+        <h1 class="brand-title">La Gelateria</h1>
+    </div>
 
     <div class="top-bar">
         <div class="lang">TR ⌄</div>
@@ -110,9 +109,7 @@
         <div class="fab-menu" id="fab-menu">
             <div class="fab-menu-item" style="font-weight: bold; color: #e31837;">Bize Ulaşın</div>
             <div class="fab-menu-item">📞 0532 123 45 67</div>
-            <div class="fab-menu-item"><a href="https://instagram.com/lagelateria_store?psln=MTRrazAwcnE3YnZsaA%3D%3D" target="_blank">
-  Instagram'da Takip Edin
-</a></div>
+            <div class="fab-menu-item"><a href="https://instagram.com/lagelateria_store?psln=MTRrazAwcnE3YnZsaA%3D%3D" target="_blank">Instagram'da Takip Edin</a></div>
         </div>
         <div class="fab-btn" onclick="toggleFab()">
             <div>
@@ -136,7 +133,6 @@
 
         async function menuyuGetir() {
             try {
-                // API'ye her seferinde benzersiz bir kod göndererek veriyi sıfırdan çekmesini zorluyoruz
                 const zamanDamgasi = new Date().getTime();
                 const response = await fetch('/api/menu?t=' + zamanDamgasi, { cache: "no-store" });
                 const veri = await response.json();
@@ -147,7 +143,6 @@
                     grid.innerHTML = "";
                     window.kategorilenmisUrunler = {};
                     
-                    // Kategorileri oluştur
                     veri.kategoriler.forEach(kat => {
                         window.kategorilenmisUrunler[kat.isim] = []; 
                         let imgUrl = kat.foto_base64 || ''; 
@@ -160,12 +155,10 @@
                         `;
                     });
 
-                    // Havada kalan ürünler için "Diğer" kategorisi açalım (eğer kategorisi silindiyse kaybolmasın)
                     if (!window.kategorilenmisUrunler["Diğer"]) {
                         window.kategorilenmisUrunler["Diğer"] = [];
                     }
 
-                    // Ürünleri yerleştir
                     veri.urunler.forEach(urun => {
                         if (window.kategorilenmisUrunler[urun.kategori]) {
                             window.kategorilenmisUrunler[urun.kategori].push(urun);
@@ -174,7 +167,6 @@
                         }
                     });
 
-                    // Eğer "Diğer" kategorisine düşen ürün varsa, anasayfada onu da göster
                     if (window.kategorilenmisUrunler["Diğer"].length > 0) {
                         grid.innerHTML += `
                             <div class="cat-box" style="background-color: #333;" onclick="openModal('Diğer')">
